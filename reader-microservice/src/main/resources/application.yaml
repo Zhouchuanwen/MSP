@@ -1,0 +1,30 @@
+#多配置数据源
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/reader?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password:
+
+
+custom:
+  datasource:
+      url: 127.0.0.1:27017
+      db: book
+      username:
+      password:
+
+
+
+
+
+#服务发现中心
+server:
+  port: 8888
+spring:
+  application:
+    name: reader-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka

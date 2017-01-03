@@ -1,0 +1,4 @@
+com/reader/bean/Reader.class
+com/reader/ReaderAppMain.class
+com/reader/config/JerseyConfig.class
+com/reader/bean/Reader$ReaderBuilder.class
