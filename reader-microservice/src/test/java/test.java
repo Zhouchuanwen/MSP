@@ -1,7 +1,5 @@
-import com.reader.config.DataSourceConfig;
 import com.reader.repo.UserRepo;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**

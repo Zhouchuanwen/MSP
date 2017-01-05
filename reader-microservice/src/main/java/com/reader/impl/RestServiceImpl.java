@@ -1,6 +1,7 @@
 package com.reader.impl;
 
 import com.reader.bean.User;
+import com.reader.core.Wrapper;
 import com.reader.repo.UserRepo;
 import com.reader.service.RestServcie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,19 @@ public class RestServiceImpl implements RestServcie {
     private UserRepo userRepo;
 
     @Override
-    public String show() {
-        return "hi,"+userRepo.test();
+    public Wrapper show() {
+        String test="hi,"+userRepo.test();
+        return Wrapper.SUCCESS;
     }
 
     @Override
-    public User BooksURead(String id) {
+    public Wrapper BooksURead(String id) {
         System.out.println(id);
-        User u=userRepo.getUserByStuId(id);
-        System.out.println(u.getStuName());
-        return u;
+        User user=userRepo.getUserByStuId(id);
+        if(user!=null){
+            return Wrapper.builder().code(0).msg("SUCCESS").data(user).build();
+        }
+        return Wrapper.ERROR;
     }
 
 

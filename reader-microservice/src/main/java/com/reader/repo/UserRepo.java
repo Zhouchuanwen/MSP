@@ -1,7 +1,6 @@
 package com.reader.repo;
 
 import com.reader.bean.User;
-import com.reader.config.DataSourceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,17 +14,14 @@ import org.springframework.stereotype.Repository;
 public class UserRepo {
 
     @Autowired
-    private DataSourceConfig dataSourceConfig;
+    private JdbcTemplate template;
 
     public RowMapper<User> userRowMapper=new BeanPropertyRowMapper<>(User.class);
 
     public User getUserByStuId(String stuId) {
         try {
-            JdbcTemplate template = dataSourceConfig.getJdbcTemplate();
-            if(template!=null){
-                String sql="SELECT * FROM user WHERE stuId=?";
-                return template.queryForObject(sql,userRowMapper,stuId);
-            }
+            String sql="SELECT * FROM user WHERE stuId=?";
+            return template.queryForObject(sql,userRowMapper,stuId);
         } catch (Exception e) {
             e.printStackTrace();
         }

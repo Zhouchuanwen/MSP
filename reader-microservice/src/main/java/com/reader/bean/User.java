@@ -1,5 +1,6 @@
 package com.reader.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class User {
     /**
      * 身份证号
      */
+    @JsonProperty("identity")
     private String idCard;
 
     private int gender;
@@ -31,16 +33,19 @@ public class User {
     /**
      * 入学时间
      */
+    @JsonProperty("schoolYear")
     private Date joinSchool;
 
     /**
      * 学生院系
      */
+    @JsonProperty("dept")
     private String sdept;
 
     /**
      * 学生教育类型
      */
+    @JsonProperty("eduType")
     private String stuType;
 
     private String major;

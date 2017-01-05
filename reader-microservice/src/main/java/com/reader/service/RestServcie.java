@@ -1,6 +1,6 @@
 package com.reader.service;
 
-import com.reader.bean.User;
+import com.reader.core.Wrapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,13 +16,13 @@ public interface RestServcie {
     @Path("/a")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    String show();
+    Wrapper show();
 
     @GET
     @Path("/studnet/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    User BooksURead(@QueryParam("id")String id);
+    Wrapper BooksURead(@PathParam("id") String id);
 
 
 }
