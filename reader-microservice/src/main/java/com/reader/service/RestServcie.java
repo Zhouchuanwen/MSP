@@ -13,13 +13,13 @@ import javax.ws.rs.core.MediaType;
 public interface RestServcie {
 
     @GET
-    @Path("/a")
+    @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Wrapper show();
 
     @GET
-    @Path("/studnet/{id}")
+    @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Wrapper BooksURead(@PathParam("id") String id);

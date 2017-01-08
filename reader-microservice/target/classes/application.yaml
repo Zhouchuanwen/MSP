@@ -1,26 +1,45 @@
-#多配置数据源
-datasource:
-    driver: com.mysql.jdbc.Driver
-    mysql: jdbc:mysql://127.0.0.1:3306/reader
-    username: root
-    pwd:
-    mongodb: 127.0.0.1:27017
-    db: book
-
-
-
-
-#服务发现中心
-server:
-  port: 8888
+#注意配置主键不能重复
+#配置多数据源:mysql,mongodb
 spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/reader
+    username: root
+    password:
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: test
   application:
     name: reader-consumer
+
+#配置服务端口
+server:
+  port: 2222
+
+#配置服务发现中心
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:1111/eureka
 
+
+#配置cxf
+#cxf:
+#  jaxrs:
+#    providers: com.reader.core.ObjectMapperResolver
+#
+
+
+#Use "cxf.path" property to customize a CXFServlet URL pattern.
+#Use "cxf.servlet.init" map property to customize CXFServlet properties such as "services-list-path" (available by default at  "/services"), etc.
+#Use "cxf.jaxrs.server.path" property to customize a JAX-RS server endpoint address (default is "/").
+#JAX-RS root resources and providers annotated with JAX-RS @Path and @Provider and native CXF Providers annotated with CXF @Provider can be auto-discovered.
+#Use "cxf.jaxrs.component-scan" property to create a JAX-RS endpoint from the auto-discovered JAX-RS root resources and providers which are marked as Spring Components (annotated with Spring @Component or created and returned from @Bean methods).
+#Use "cxf.jaxrs.classes-scan" property to create a JAX-RS endpoint from the auto-discovered JAX-RS root resources and provider classes. Such classes do not have to be annotated with Spring @Component. This property needs to be accompanied by a "cxf.jaxrs.classes-scan-packages" property which sets a comma-separated list of the packages to scan.
+#Note that while "cxf.jaxrs.component-scan" and "cxf.jaxrs.classes-scan" are mutually exclusive, "cxf.jaxrs.component-scan" can be used alongside the "cxf.jaxrs.classes-scan-packages" property to enable the auto-discovery of the JAX-RS resources and providers which may or may not be marked as Spring Components.
+#If needed, instead of having the resources auto-discovered,  one can use Spring ImportResource annotation to import the existing JAX-RS contexts available on the classpath.
 
 
 

@@ -10,12 +10,8 @@ public class test {
 
     @Test
     public void test() throws Exception {
-//        DataSourceConfig dataSourceConfig=new DataSourceConfig();
-//        JdbcTemplate jdbcTemplate=dataSourceConfig.getJdbcTemplate();
-//        String sql="SELECT * FROM USER";
-//        jdbcTemplate.execute(sql);
-    }
 
+    }
 
 
     @Test

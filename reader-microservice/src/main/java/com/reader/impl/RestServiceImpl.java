@@ -6,9 +6,6 @@ import com.reader.repo.UserRepo;
 import com.reader.service.RestServcie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-
 /**
  * Created by alan on 16/12/26.
  */
@@ -21,19 +18,16 @@ public class RestServiceImpl implements RestServcie {
 
     @Override
     public Wrapper show() {
-        String test="hi,"+userRepo.test();
-        return Wrapper.SUCCESS;
+        return Wrapper.builder().code(0).msg("SUCCESS").data(userRepo.test1()).build();
     }
 
     @Override
     public Wrapper BooksURead(String id) {
-        System.out.println(id);
         User user=userRepo.getUserByStuId(id);
         if(user!=null){
             return Wrapper.builder().code(0).msg("SUCCESS").data(user).build();
         }
         return Wrapper.ERROR;
     }
-
 
 }

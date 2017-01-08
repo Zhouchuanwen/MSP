@@ -1,5 +1,6 @@
 package com.reader.core;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,11 +10,11 @@ import org.json.JSONObject;
 /**
  * Created by alan on 17/1/5.
  */
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Wrapper {
 
     public static final Wrapper SUCCESS=Wrapper.builder().code(0).msg("SUCCESS").build();
@@ -27,7 +28,6 @@ public class Wrapper {
     private String description;
 
     private Object data;
-
 
     public Wrapper(int code, String msg) {
         this(code, msg, null);
