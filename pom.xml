@@ -20,6 +20,7 @@
         <module>recommendation-microservice</module>
         <module>reader-microservice</module>
         <module>administrator-microservice</module>
+        <module>core</module>
     </modules>
 
 
@@ -50,12 +51,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix</artifactId>
                 <version>1.2.3.RELEASE</version>
-            </dependency>
-            <!--REST-->
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-                <version>3.1.7</version>
             </dependency>
 
             <!--JSON-->

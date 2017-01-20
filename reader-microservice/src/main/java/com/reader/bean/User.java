@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User{
 
     private String stuName;
 
@@ -28,6 +29,9 @@ public class User {
     @JsonProperty("identity")
     private String idCard;
 
+    /**
+     * 1:男，0:女
+     */
     private int gender;
 
     /**
@@ -55,5 +59,10 @@ public class User {
     private String email;
 
     private int rank;
+
+    /**
+     * 是否可用：0代表状态正常，1代表已经删除,2代表禁用;
+     */
+    private int mask;
 
 }

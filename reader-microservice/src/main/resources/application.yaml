@@ -25,11 +25,11 @@ eureka:
       defaultZone: http://localhost:1111/eureka
 
 
-#配置cxf
+##配置cxf
 #cxf:
 #  jaxrs:
-#    providers: com.reader.core.ObjectMapperResolver
-#
+#    component-scan: true
+#    classes-scan-packages: org.apache.cxf.jaxrs.swagger
 
 
 #Use "cxf.path" property to customize a CXFServlet URL pattern.

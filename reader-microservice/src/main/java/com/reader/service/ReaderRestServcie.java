@@ -1,6 +1,7 @@
 package com.reader.service;
 
 import com.reader.core.Wrapper;
+import com.reader.model.UserReq;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -9,20 +10,33 @@ import javax.ws.rs.core.MediaType;
  * Created by alan on 16/12/26.
  */
 
-@Path("/hello")
-public interface RestServcie {
+@Path("/user")
+public interface ReaderRestServcie {
 
     @GET
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Wrapper show();
+    Wrapper test();
 
-    @GET
-    @Path("/user/{id}")
+    @POST
+    @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Wrapper BooksURead(@PathParam("id") String id);
+    Wrapper userLogin(UserReq userReq);
+
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Wrapper userInfo(@PathParam("id") String id);
+
+
+
+
+
+
 
 
 }

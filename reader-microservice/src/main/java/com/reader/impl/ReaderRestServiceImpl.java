@@ -2,8 +2,9 @@ package com.reader.impl;
 
 import com.reader.bean.User;
 import com.reader.core.Wrapper;
+import com.reader.model.UserReq;
 import com.reader.repo.UserRepo;
-import com.reader.service.RestServcie;
+import com.reader.service.ReaderRestServcie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -11,18 +12,24 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class RestServiceImpl implements RestServcie {
+public class ReaderRestServiceImpl implements ReaderRestServcie {
 
     @Autowired
     private UserRepo userRepo;
 
     @Override
-    public Wrapper show() {
-        return Wrapper.builder().code(0).msg("SUCCESS").data(userRepo.test1()).build();
+    public Wrapper test() {
+        return Wrapper.builder().code(0).msg("SUCCESS").data("hi").build();
     }
 
     @Override
-    public Wrapper BooksURead(String id) {
+    public Wrapper userLogin(UserReq userReq) {
+        return null;
+    }
+
+
+    @Override
+    public Wrapper userInfo(String id) {
         User user=userRepo.getUserByStuId(id);
         if(user!=null){
             return Wrapper.builder().code(0).msg("SUCCESS").data(user).build();
