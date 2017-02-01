@@ -1,4 +1,4 @@
-package book.core;
+package util;
 
 /**
  * Created by alan on 17/1/16.
