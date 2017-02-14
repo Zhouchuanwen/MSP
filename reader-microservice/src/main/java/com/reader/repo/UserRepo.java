@@ -29,7 +29,6 @@ public class UserRepo {
     public RowMapper<User> USER_MAPPER=new BeanPropertyRowMapper<>(User.class);
 
 
-
     public User create(final User user) {
         final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt) " +
                 " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?)";

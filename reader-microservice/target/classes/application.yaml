@@ -24,22 +24,3 @@ eureka:
     service-url:
       defaultZone: http://localhost:1111/eureka
 
-
-##配置cxf
-#cxf:
-#  jaxrs:
-#    component-scan: true
-#    classes-scan-packages: org.apache.cxf.jaxrs.swagger
-
-
-#Use "cxf.path" property to customize a CXFServlet URL pattern.
-#Use "cxf.servlet.init" map property to customize CXFServlet properties such as "services-list-path" (available by default at  "/services"), etc.
-#Use "cxf.jaxrs.server.path" property to customize a JAX-RS server endpoint address (default is "/").
-#JAX-RS root resources and providers annotated with JAX-RS @Path and @Provider and native CXF Providers annotated with CXF @Provider can be auto-discovered.
-#Use "cxf.jaxrs.component-scan" property to create a JAX-RS endpoint from the auto-discovered JAX-RS root resources and providers which are marked as Spring Components (annotated with Spring @Component or created and returned from @Bean methods).
-#Use "cxf.jaxrs.classes-scan" property to create a JAX-RS endpoint from the auto-discovered JAX-RS root resources and provider classes. Such classes do not have to be annotated with Spring @Component. This property needs to be accompanied by a "cxf.jaxrs.classes-scan-packages" property which sets a comma-separated list of the packages to scan.
-#Note that while "cxf.jaxrs.component-scan" and "cxf.jaxrs.classes-scan" are mutually exclusive, "cxf.jaxrs.component-scan" can be used alongside the "cxf.jaxrs.classes-scan-packages" property to enable the auto-discovery of the JAX-RS resources and providers which may or may not be marked as Spring Components.
-#If needed, instead of having the resources auto-discovered,  one can use Spring ImportResource annotation to import the existing JAX-RS contexts available on the classpath.
-
-
-

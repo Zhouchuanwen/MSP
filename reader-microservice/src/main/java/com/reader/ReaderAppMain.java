@@ -1,42 +1,31 @@
 package com.reader;
 
-import com.reader.impl.ReaderRestServiceImpl;
-import org.apache.cxf.Bus;
-import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.feature.LoggingFeature;
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 
-import java.util.Arrays;
 
 /**
  * Created by alan on 16/12/26.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@ImportResource({ "/cxf.xml" })
 public class ReaderAppMain {
-
-    @Autowired
-    private Bus bus;
-
 
     public static void main(String[] args){
         SpringApplication.run(ReaderAppMain.class, args);
     }
 
-
-    //TODO http日志LoggingFeature集成
     @Bean
-    public Server rsServer() {
-        JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
-        endpoint.setBus(bus);
-        System.out.println("bus ok");
-        endpoint.setServiceBean(new ReaderRestServiceImpl());
-        endpoint.setFeatures(Arrays.asList(new LoggingFeature()));
-        return endpoint.create();
+    public ServletRegistrationBean cxfServlet() {
+        CXFServlet cxfServlet = new CXFServlet();
+        ServletRegistrationBean servletDef = new ServletRegistrationBean(cxfServlet, "/services/*");
+        servletDef.setLoadOnStartup(1);
+        return servletDef;
     }
 }
