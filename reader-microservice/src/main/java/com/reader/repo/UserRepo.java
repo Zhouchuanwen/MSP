@@ -2,6 +2,7 @@ package com.reader.repo;
 
 import com.reader.bean.User;
 import com.reader.config.MongoConfigTemplate;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -59,32 +60,29 @@ public class UserRepo {
     public User getUserByStuId(String stuId) {
         try {
             return template.queryForObject("SELECT * FROM user WHERE stuId=?",USER_MAPPER,stuId);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (DataAccessException e) {
+            return null;
         }
-        return null;
     }
 
     public User getUserByStuName(String stuName) {
         try {
             return template.queryForObject("SELECT * FROM user WHERE stuName LIKE '%'+stuName+'%'",USER_MAPPER);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (DataAccessException e) {
+            return null;
         }
-        return null;
     }
 
 
     public User updateUserByStuId(Long stuId){
         template.update("UPDATE user SET ");
         return null;
-
     }
 
     public void delete(Long readerId){
         try {
             template.update("UPDATE user SET mask=1 WHERE readerId=?", readerId);
-        } catch (Exception e) {
+        } catch (DataAccessException e) {
             e.printStackTrace();
         }
     }
@@ -92,7 +90,7 @@ public class UserRepo {
     public void disable(Long readerId){
         try {
             template.update("UPDATE user SET mask=2 WHERE readerId=?", readerId);
-        } catch (Exception e) {
+        } catch (DataAccessException e) {
             e.printStackTrace();
         }
     }
@@ -100,7 +98,7 @@ public class UserRepo {
     public void enable(Long readerId){
         try {
             template.update("UPDATE user SET mask=0 WHERE readerId=?", readerId);
-        } catch (Exception e) {
+        } catch (DataAccessException e) {
             e.printStackTrace();
         }
     }

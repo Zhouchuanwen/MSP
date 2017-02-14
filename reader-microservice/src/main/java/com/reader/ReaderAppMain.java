@@ -28,10 +28,13 @@ public class ReaderAppMain {
         SpringApplication.run(ReaderAppMain.class, args);
     }
 
+
+    //TODO http日志LoggingFeature集成
     @Bean
     public Server rsServer() {
         JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
         endpoint.setBus(bus);
+        System.out.println("bus ok");
         endpoint.setServiceBean(new ReaderRestServiceImpl());
         endpoint.setFeatures(Arrays.asList(new LoggingFeature()));
         return endpoint.create();
