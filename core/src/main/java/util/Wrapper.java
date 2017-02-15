@@ -1,4 +1,4 @@
-package com.reader.core;
+package util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

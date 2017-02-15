@@ -12,7 +12,6 @@
         </cxf:features>
     </cxf:bus>
 
-
     <bean id="readerRestServiceImpl" class="com.reader.impl.ReaderRestServiceImpl"/>
 
     <jaxrs:server id="readerServer" address="/">
@@ -29,5 +28,4 @@
             <bean class="com.reader.core.ObjectMapperResolver"/>
         </jaxrs:providers>
     </jaxrs:server>
-
 </beans>

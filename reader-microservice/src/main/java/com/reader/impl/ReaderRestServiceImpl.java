@@ -1,7 +1,7 @@
 package com.reader.impl;
 
 import com.reader.bean.User;
-import com.reader.core.Wrapper;
+import util.Wrapper;
 import com.reader.model.UserReq;
 import com.reader.repo.UserRepo;
 import com.reader.service.ReaderRestServcie;

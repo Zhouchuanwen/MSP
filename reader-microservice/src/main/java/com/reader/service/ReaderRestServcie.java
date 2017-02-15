@@ -1,6 +1,6 @@
 package com.reader.service;
 
-import com.reader.core.Wrapper;
+import util.Wrapper;
 import com.reader.model.UserReq;
 
 import javax.ws.rs.*;
