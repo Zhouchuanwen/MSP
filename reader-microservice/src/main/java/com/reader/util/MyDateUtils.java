@@ -1,4 +1,4 @@
-package util;
+package com.reader.util;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang.time.FastDateFormat;

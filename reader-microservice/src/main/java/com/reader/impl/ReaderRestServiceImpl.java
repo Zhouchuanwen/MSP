@@ -1,10 +1,10 @@
 package com.reader.impl;
 
 import com.reader.bean.User;
-import util.Wrapper;
 import com.reader.model.UserReq;
 import com.reader.repo.UserRepo;
 import com.reader.service.ReaderRestServcie;
+import com.reader.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**

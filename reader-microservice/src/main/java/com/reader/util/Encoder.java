@@ -1,6 +1,4 @@
-package util;
-
-import org.junit.Test;
+package com.reader.util;
 
 import java.util.UUID;
 

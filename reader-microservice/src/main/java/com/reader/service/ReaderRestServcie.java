@@ -1,7 +1,7 @@
 package com.reader.service;
 
-import util.Wrapper;
 import com.reader.model.UserReq;
+import com.reader.util.Wrapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

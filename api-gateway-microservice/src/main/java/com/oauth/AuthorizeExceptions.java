@@ -1,7 +1,8 @@
-package com.api;
+package com.oauth;
 
-import util.Wrapper;
-import util.WrapperProvider;
+
+import com.reader.util.Wrapper;
+import com.reader.util.WrapperProvider;
 
 /**
  * 授权管理异常 200 段

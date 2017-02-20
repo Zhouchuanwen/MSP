@@ -2,8 +2,8 @@ package com.reader.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.reader.util.Encoder;
 import lombok.*;
-import util.Encoder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

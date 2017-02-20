@@ -2,13 +2,13 @@ package com.reader.repo;
 
 import com.reader.bean.User;
 import com.reader.config.MongoConfigTemplate;
+import com.reader.util.MyDateUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
-import util.MyDateUtils;
 
 import javax.inject.Inject;
 import java.sql.PreparedStatement;
@@ -32,7 +32,7 @@ public class UserRepo {
     public User create(final User user) {
         final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt) " +
                 " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?)";
-        String school=user.getJoinSchool()!=null?MyDateUtils.date2String(user.getJoinSchool()):null;
+        String school=user.getJoinSchool()!=null? MyDateUtils.date2String(user.getJoinSchool()):null;
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         template.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});

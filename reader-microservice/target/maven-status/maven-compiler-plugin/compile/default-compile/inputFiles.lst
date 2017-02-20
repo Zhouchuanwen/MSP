@@ -1,4 +1,14 @@
-/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/impl/RegisterServiceImpl.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/repo/UserRepo.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/service/ReaderRestServcie.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/bean/Book.java
 /Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/ReaderAppMain.java
-/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/bean/Reader.java
-/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/service/RegisterServcie.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/core/UserException.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/config/MongoConfigTemplate.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/config/JerseyConfig.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/service/userService.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/bean/StuBook.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/core/AuthInterceptor.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/impl/ReaderRestServiceImpl.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/bean/User.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/core/ObjectMapperResolver.java
+/Users/jaychou/Downloads/AlanBook/reader-microservice/src/main/java/com/reader/model/UserReq.java

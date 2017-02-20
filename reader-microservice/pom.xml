@@ -13,13 +13,6 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.book</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -104,8 +97,12 @@
             <artifactId>cxf-rt-rs-service-description</artifactId>
             <version>3.1.5</version>
         </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
     </dependencies>
-
 
 
 </project>

@@ -41,7 +41,8 @@ public class AuthorizedFilter extends ZuulFilter {
 
         log.info(String.format("%s request to %s"),request.getMethod(),request.getRequestURL().toString());
 
-        getAccessToken(request);
+        String access_token=getAccessToken(request);
+        System.out.println(access_token==null?"access_token null!":access_token);
 
         return null;
     }
