@@ -48,6 +48,15 @@ public class UserService {
         return userRepo.create(user);
     }
 
+    //TODO 集成redis
+//    public User getByAuthorizationCode(String authorizationCode) {
+//        Long userId = redisRepo.getAuthorizationCode(authorizationCode);
+//        if (userId == null) {
+//            return null;
+//        }
+//        return userRepo.findById(userId);
+//    }
+
     public static String getAccessToken(User user) {
         JwtBuilder builder = Jwts.builder().setId(Encoder.random())
                 .setExpiration(getExpireDate()).signWith(SignatureAlgorithm.HS256, secretKey);

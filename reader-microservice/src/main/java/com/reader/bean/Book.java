@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.mongodb.morphia.annotations.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -11,7 +13,7 @@ import java.util.Date;
  * Created by alan on 17/1/3.
  */
 
-
+@Document(collection = "test")
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,5 +31,7 @@ public class Book {
     private Date endDate;
 
     private String libraryAddress;
+
+    private int num;
 
 }

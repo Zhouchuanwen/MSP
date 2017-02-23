@@ -3,6 +3,7 @@ package com.reader.repo;
 import com.reader.bean.User;
 import com.reader.config.MongoConfigTemplate;
 import com.reader.util.MyDateUtils;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +18,7 @@ import java.util.Date;
 /**
  * Created by alan on 17/1/3.
  */
+@Configuration
 @Repository
 public class UserRepo {
 
@@ -27,7 +29,6 @@ public class UserRepo {
     private MongoConfigTemplate mongoConfigTemplate;
 
     public RowMapper<User> USER_MAPPER=new BeanPropertyRowMapper<>(User.class);
-
 
     public User create(final User user) {
         final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt) " +
@@ -58,8 +59,10 @@ public class UserRepo {
 
     public User getUserByStuId(String stuId) {
         try {
+            System.out.println("stuid"+stuId);
             return template.queryForObject("SELECT * FROM user WHERE stuId=?",USER_MAPPER,stuId);
         } catch (DataAccessException e) {
+            System.out.println("hahahhahhahaa");
             return null;
         }
     }
@@ -102,15 +105,6 @@ public class UserRepo {
         }
     }
 
-
-//    public Long test1(){
-//        Datastore datastore=mongoConfigTemplate.get();
-//        if(datastore!=null){
-//            long num=datastore.createQuery(Object.class).countAll();
-//            return num;
-//        }
-//        return null;
-//    }
 
 
 }

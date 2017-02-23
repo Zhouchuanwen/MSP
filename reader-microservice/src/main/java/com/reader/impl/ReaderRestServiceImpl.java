@@ -2,6 +2,7 @@ package com.reader.impl;
 
 import com.reader.bean.User;
 import com.reader.model.UserReq;
+import com.reader.repo.BookRepo;
 import com.reader.repo.UserRepo;
 import com.reader.service.ReaderRestServcie;
 import com.reader.util.Wrapper;
@@ -17,16 +18,23 @@ public class ReaderRestServiceImpl implements ReaderRestServcie {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private BookRepo bookRepo;
+
     @Override
     public Wrapper test() {
         return Wrapper.builder().code(0).msg("SUCCESS").data("hi").build();
     }
 
     @Override
+    public Wrapper testMongo() {
+        return Wrapper.builder().code(0).msg("SUCCESS").data(bookRepo.findBelow()).build();
+    }
+
+    @Override
     public Wrapper userLogin(UserReq userReq) {
         return null;
     }
-
 
     @Override
     public Wrapper userInfo(String id) {

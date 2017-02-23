@@ -12,6 +12,7 @@ import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +24,7 @@ import java.io.IOException;
 /**
  * Created by alan on 17/2/15.
  */
-
-
+@Service
 public class AccessTokenEndpoint extends HttpServlet {
 
     @Autowired
@@ -39,27 +39,34 @@ public class AccessTokenEndpoint extends HttpServlet {
                 printError(response, AuthorizeExceptions.UNSUPPORTED_GRANT_TYPE);
                 return;
             }
+
             OAuthASResponse.OAuthTokenResponseBuilder builder= OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK);
 
-            User user;
+            User user=null;
             switch (oAuthTokenRequest.getGrantType()){
+                case "authorization_code":
+                    if (OAuthUtils.isEmpty(oAuthTokenRequest.getCode())) {
+                        printError(response, AuthorizeExceptions.EXPIRE_AUTHORIZATION_CODE);
+                        return;
+                    }
+                    break;
                 case "password":
-                    String username=request.getParameter("username");
-                    String password=request.getParameter("password");
-
-                    System.out.println(username+"==>"+password);
+                    String username=oAuthTokenRequest.getUsername();
+                    String password=oAuthTokenRequest.getPassword();
+                    System.out.println("uname:"+username+"  pwd:"+password);
 
                     if (OAuthUtils.isEmpty(username) || OAuthUtils.isEmpty(password)) {
                         printError(response, AuthorizeExceptions.ILLEGAL_USERNAME_LENGTH);
                         return;
                     }
-                    user = userRepo.getUserByStuName(username);
+                    System.out.println("userRepo: --> "+userRepo);
+                    user = userRepo.getUserByStuId(username);
+
                     if (user == null) {
                         printError(response, AuthorizeExceptions.NOT_FOUND_USER);
                         return;
                     }
                     if (user.checkCredentials(password)) {
-
                         break;
                     }
                     printError(response, AuthorizeExceptions.INVALID_USER_PASS);
