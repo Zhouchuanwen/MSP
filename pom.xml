@@ -20,7 +20,7 @@
         <module>recommendation-microservice</module>
         <module>reader-microservice</module>
         <module>administrator-microservice</module>
-        <module></module>
+        <module>book-microservice</module>
     </modules>
 
 

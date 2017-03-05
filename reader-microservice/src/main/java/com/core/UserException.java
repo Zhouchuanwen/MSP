@@ -1,13 +1,15 @@
-package com.oauth;
-
+package com.core;
 
 import com.util.Wrapper;
 import com.util.WrapperProvider;
 
 /**
- * 授权管理异常 200 段
+ * Created by alan on 17/2/15.
  */
-public enum AuthorizeExceptions implements WrapperProvider {
+public enum UserException implements WrapperProvider {
+
+
+    USER_ALREADY_EXIST(201,"用户已经存在"),
 
     ILLEGAL_TOKEN_TYPE(202, "不合法的access_token类型"),
 
@@ -31,11 +33,13 @@ public enum AuthorizeExceptions implements WrapperProvider {
 
     ILLEGAL_URL_LENGTH(215, "不合法的URL长度"),
 
+
     MISSING_PARAMETER_ACCESS_TOKEN(216, "缺少access_token参数"),
 
     MISSING_PARAMETER_REFRESH_TOKEN(218, "缺少refresh_token参数"),
 
-    MISSING_PARAMETER_APP_SECRECT(219, "缺少app_secret参数"),
+
+    MISSING_PARAMETER(219, "缺少用户名和密码"),
 
     MISSING_PARAMETER_AUTHORIZATION_CODE(220, "缺少authorization_code"),
 
@@ -57,23 +61,22 @@ public enum AuthorizeExceptions implements WrapperProvider {
 
     MISSING_VCODE_CODE(229, "缺少参数code、vcode"),
 
-    MISSING_AUTH_PARAMATER(230, "缺少权限相关参数"),
-
     MISSING_SYS_PARAMETER(231, "缺少系统配置相关参数"),
 
-    ERROR_VCODE_CODE(315, "验证码错误");
+    ERROR_VCODE_CODE(232, "验证码错误");
 
 
     private int code;
+
     private String msg;
 
-    AuthorizeExceptions(int code, String msg) {
+    UserException(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
     @Override
     public Wrapper get() {
-        return Wrapper.builder().code(code).msg(msg).build();
+        return null;
     }
 }

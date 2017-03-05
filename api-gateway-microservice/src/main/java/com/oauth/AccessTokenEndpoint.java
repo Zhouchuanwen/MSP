@@ -1,9 +1,9 @@
 package com.oauth;
 
-import com.reader.bean.User;
-import com.reader.repo.UserRepo;
-import com.reader.service.UserService;
-import com.reader.util.Wrapper;
+import com.bean.User;
+import com.repo.UserRepo;
+import com.service.UserService;
+import com.util.Wrapper;
 import org.apache.oltu.oauth2.as.request.OAuthTokenRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
 import org.apache.oltu.oauth2.common.OAuth;
@@ -12,7 +12,7 @@ import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  * Created by alan on 17/2/15.
  */
-@Service
+@Component
 public class AccessTokenEndpoint extends HttpServlet {
 
     @Autowired
@@ -32,6 +32,7 @@ public class AccessTokenEndpoint extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             HttpServletRequest req = new OAuthAccessTokenWrapper(request);
             OAuthTokenRequest oAuthTokenRequest = new OAuthExtendTokenRequest(req);
 
