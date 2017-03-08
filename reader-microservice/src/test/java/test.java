@@ -1,4 +1,9 @@
+import com.github.stuxuhai.jpinyin.PinyinException;
+import com.github.stuxuhai.jpinyin.PinyinFormat;
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import org.junit.Test;
+
+import java.util.*;
 
 /**
  * Created by alan on 16/12/26.
@@ -7,7 +12,7 @@ public class test {
 
 
     @Test
-    public void test(){
+    public void autoGenerateEnum(){
         String t1= "文学\n" +
                 "文学理论 | 文学评论与鉴赏 | 文学史 | 名家作品及欣赏 | 作品集 | 散文随笔 | 影视文学 | 诗歌词曲 | 纪实文学 | 戏剧与曲艺 | 民间文学 | 期刊杂志 | 文学作品导读\n" +
                 "\n" +
@@ -121,12 +126,54 @@ public class test {
                 "小说 | 文学 | 艺术 | 经济与管理 | 少儿 | 育儿 | 家庭教育 | 考试 | 中小学教辅 | 大中专教材教辅 | 英语与其他外语 | 动漫与绘本 | 烹饪饮食与酒 | 娱乐 | 时尚 | 励志与成功 | 健身与保健 | 传记 | 旅游与地图 | 家居休闲 | 计算机与互联网 | \n" +
                 "\n" +
                 "政治与军事 | 历史 | 心理学 | 社会科学 | 哲学与宗教 | 国学 | 建筑 | 医学 | 新闻出版、图书馆、档案学 | 语言文字 | 教育 | 科学与自然 | 科技 | 体育 | 词典与工具书 | 进口原版 |\n" ;
-        String title[]=t1.split("\\|");
 
-        for(int i=0;i<title.length;i++){
-            System.out.println(title[i]);
+        String s[]=t1.split("\\n");
+        Map<Integer,String> parent=new HashMap<>();
+        Map<Integer,String[]> childs=new HashMap<>();
+
+        for(int i=0;i<s.length;i++){
+            //获取标题
+            if(!s[i].contains("|") && !s[i].trim().isEmpty()){
+                parent.put(i,s[i]);
+            }else if(!s[i].trim().isEmpty()){
+                //获取子标题
+                String[] child=s[i].split("\\|");
+                childs.put(i-1,child);
+            }
         }
 
+        //生成enum类
+        for(Integer id:parent.keySet()){
+            generateEnumClass(parent.get(id),childs.get(id));
+        }
+    }
+
+    public void generateEnumClass(String title,String[] smallTitle){
+        StringBuilder main=new StringBuilder("public enum ");
+        String className=transfer2pinyin(title);
+        String settterAndgettter = "\tprivate int code;\n" +
+                "\tprivate String name;\n" +
+                "\t"+className+"(int code,String name){\n" +
+                "       this.code=code;\n" +
+                "       this.name=name;\n" +
+                "\t}";
+        StringBuilder pairProperty=new StringBuilder();
+        for(int i=0;i<smallTitle.length;i++){
+            pairProperty.append("\t"+transfer2pinyin(smallTitle[i])+"("+i+",\""+smallTitle[i]+"\"),\n");
+        }
+        main.append(className).append("{\n").append(pairProperty).append(settterAndgettter).append("\n}").append("\n\n\n");
+        System.out.println(main.toString());
+    }
+
+
+    public String transfer2pinyin(String hanzi){
+        try {
+            String pinyin=PinyinHelper.convertToPinyinString(hanzi,"",PinyinFormat.WITHOUT_TONE);
+            return pinyin.toUpperCase();
+        } catch (PinyinException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

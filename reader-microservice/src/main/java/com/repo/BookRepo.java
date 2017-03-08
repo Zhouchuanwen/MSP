@@ -1,6 +1,7 @@
 package com.repo;
 
 
+import com.bean.Book;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;

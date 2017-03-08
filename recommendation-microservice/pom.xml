@@ -12,4 +12,7 @@
     <artifactId>recommendation-microservice</artifactId>
 
 
+    <dependencies>
+
+    </dependencies>
 </project>
