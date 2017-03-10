@@ -1,17 +1,17 @@
 #注意配置主键不能重复
 #配置多数据源:mysql,mongodb
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/reader
-    username: root
-    password:
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: test
   application:
-    name: reader-consumer
+    name: book-consumer
 
 #配置服务端口
 server:
-  port: 2222
+  port: 7777
 
 #配置服务发现中心
 eureka:

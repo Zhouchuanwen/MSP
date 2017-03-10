@@ -6,11 +6,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/reader
     username: root
     password:
-  data:
-    mongodb:
-      host: 127.0.0.1
-      port: 27017
-      database: test
   application:
     name: reader-consumer
 
