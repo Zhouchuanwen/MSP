@@ -19,15 +19,16 @@ import org.springframework.context.annotation.FilterType;
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan(basePackages = "com.alan.reader.service", excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = UserService.class)})
+@ComponentScan(basePackages = {"com.alan.reader"})
 public class AppZuulMain {
 
-    @Autowired
-    private ApplicationContext context;
+    private static ApplicationContext context;
 
+    private static UserService userService;
 
     public static void main(String[] args){
-        new SpringApplicationBuilder(AppZuulMain.class).run(args);
+        userService = new SpringApplicationBuilder(AppZuulMain.class).run(args).getBean(UserService.class);
+        userService.sayHi();
     }
 
     @Bean

@@ -53,6 +53,10 @@ public class UserService {
         return userRepo.getUserByStuName(userName);
     }
 
+    public void sayHi() {
+        System.out.println("hi.......aaalllaaannnn");
+    }
+
 
     public static String getAccessToken(User user) {
         JwtBuilder builder = Jwts.builder().setId(Encoder.random())

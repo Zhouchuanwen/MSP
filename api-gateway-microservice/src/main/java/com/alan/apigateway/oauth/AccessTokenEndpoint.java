@@ -60,8 +60,6 @@ public class AccessTokenEndpoint extends HttpServlet {
                         printError(response, AuthorizeExceptions.ILLEGAL_USERNAME_LENGTH);
                         return;
                     }
-                    System.out.println("userRepo: --> " + userService);
-                    user = userService.findUserByName("zcw");
 
                     if (user == null) {
                         printError(response, AuthorizeExceptions.NOT_FOUND_USER);
