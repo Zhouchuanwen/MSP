@@ -1,6 +1,6 @@
 package com.alan.reader.repo;
 
-import com.alan.reader.util.MyDateUtils;
+import com.alan.common.util.MyDateUtils;
 import com.alan.reader.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

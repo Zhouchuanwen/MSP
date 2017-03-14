@@ -1,4 +1,4 @@
-package com.alan.reader.util;
+package com.alan.common.util;
 
 /**
  * Created by alan on 17/2/15.

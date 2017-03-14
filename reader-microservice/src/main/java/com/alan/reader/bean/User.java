@@ -1,8 +1,8 @@
 package com.alan.reader.bean;
 
+import com.alan.common.util.Encoder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.alan.reader.util.Encoder;
 import lombok.*;
 
 import java.security.MessageDigest;

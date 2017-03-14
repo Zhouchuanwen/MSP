@@ -1,7 +1,7 @@
 package com.alan.reader.service;
 
+import com.alan.common.util.Wrapper;
 import com.alan.reader.model.UserReq;
-import com.alan.reader.util.Wrapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

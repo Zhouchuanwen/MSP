@@ -1,23 +1,21 @@
-package com.alan.book.bean;
+package com.alan.book.model;
 
+import com.alan.book.bean.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 /**
- * Created by alan on 17/1/3.
+ * Created by alan on 17/3/14.
  */
-
-@Document(collection = "test")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book {
+public class BookReq {
 
     private String ISBN;
 
@@ -25,19 +23,14 @@ public class Book {
 
     private String author;
 
-    /**
-     * 出版日期
-     */
     private Date publication;
 
     private String libraryAddress;
 
     private int num;
 
-    //书籍评分
     private double score;
 
-    //书籍类型
     private Tag tag;
 
 }

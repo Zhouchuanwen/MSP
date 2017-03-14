@@ -3,7 +3,7 @@ package com.alan.book.impl;
 import com.alan.book.bean.Book;
 import com.alan.book.service.BookRestService;
 import com.alan.book.repo.BookRepo;
-import com.alan.reader.util.Wrapper;
+import com.alan.common.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -28,5 +28,10 @@ public class BookRestServiceImpl implements BookRestService {
             return Wrapper.builder().code(0).data(bookRepo.findBelow()).msg("SUCCESS").build();
         }
         return Wrapper.ERROR;
+    }
+
+    @Override
+    public Wrapper up(Book req) {
+        return null;
     }
 }

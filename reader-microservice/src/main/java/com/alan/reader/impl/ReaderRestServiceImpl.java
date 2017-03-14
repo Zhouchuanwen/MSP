@@ -1,9 +1,9 @@
 package com.alan.reader.impl;
 
+import com.alan.common.util.Wrapper;
 import com.alan.reader.bean.User;
 import com.alan.reader.model.UserReq;
 import com.alan.reader.repo.UserRepo;
-import com.alan.reader.util.Wrapper;
 import com.alan.reader.service.ReaderRestServcie;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,10 @@
 package com.alan.book.service;
 
 
-import com.alan.reader.util.Wrapper;
+import com.alan.book.bean.Book;
+import com.alan.common.util.Wrapper;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -28,6 +26,15 @@ public interface BookRestService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Wrapper testMongo();
+
+
+    @PUT
+    @Path("/up")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Wrapper up(Book req);
+
+
 
 
 }

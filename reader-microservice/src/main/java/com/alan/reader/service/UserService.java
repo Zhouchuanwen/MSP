@@ -1,11 +1,11 @@
 package com.alan.reader.service;
 
+import com.alan.common.util.Encoder;
+import com.alan.common.util.OutterException;
 import com.alan.reader.bean.User;
 import com.alan.reader.repo.UserRepo;
-import com.alan.reader.util.OutterException;
 import com.google.common.base.Strings;
 import com.alan.reader.core.UserException;
-import com.alan.reader.util.Encoder;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

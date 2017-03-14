@@ -19,8 +19,8 @@
         <module>api-gateway-microservice</module>
         <module>recommendation-microservice</module>
         <module>reader-microservice</module>
-        <module>administrator-microservice</module>
         <module>book-microservice</module>
+        <module>common-microsevice</module>
     </modules>
 
 

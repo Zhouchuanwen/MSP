@@ -1,7 +1,8 @@
 package com.alan.reader.core;
 
-import com.alan.reader.util.WrapperProvider;
-import com.alan.reader.util.Wrapper;
+
+import com.alan.common.util.Wrapper;
+import com.alan.common.util.WrapperProvider;
 
 /**
  * Created by alan on 17/2/15.

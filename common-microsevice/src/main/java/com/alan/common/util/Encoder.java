@@ -1,4 +1,4 @@
-package com.alan.reader.util;
+package com.alan.common.util;
 
 import java.util.UUID;
 
