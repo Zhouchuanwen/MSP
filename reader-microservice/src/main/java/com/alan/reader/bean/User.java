@@ -19,6 +19,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class User{
 
+    private Integer readerId;
+
     private String stuName;
 
     private String stuId;
@@ -61,10 +63,14 @@ public class User{
     private int rank;
 
     /**
+     * 用户角色 0:普通用户 1:图书管理员 2:系统管理员
+     */
+    private int role;
+
+    /**
      * 是否可用：0代表状态正常，1代表已经删除,2代表禁用;
      */
     private int mask;
-
 
     private Date register;
 
@@ -73,7 +79,6 @@ public class User{
 
     @Getter(onMethod = @__(@JsonIgnore))
     private String salt;
-
 
     public boolean checkCredentials(String password) {
         String credentials = secure(password, this.salt);

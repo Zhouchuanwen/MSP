@@ -69,7 +69,6 @@ public class AuthorizedFilter extends ZuulFilter {
                 }
             }
         }
-
         return request.getParameter("access_token");
     }
 }

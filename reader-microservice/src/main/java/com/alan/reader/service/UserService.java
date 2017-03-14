@@ -11,7 +11,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -37,7 +36,7 @@ public class UserService {
         if (Strings.isNullOrEmpty(user.getPassword())) {
             throw new OutterException(UserException.MISSING_PARAMETER);
         }
-        User exists = userRepo.getUserByStuName(user.getStuName());
+        User exists = userRepo.getUserByStuId(user.getStuId());
         if (exists != null) {
             throw new OutterException(UserException.USER_ALREADY_EXIST);
         }
@@ -48,15 +47,23 @@ public class UserService {
         return userRepo.create(user);
     }
 
+    public User findUserById(String stuId) {
+        return userRepo.getUserByStuId(stuId);
+    }
 
     public User findUserByName(String userName) {
         return userRepo.getUserByStuName(userName);
     }
 
-    public void sayHi() {
-        System.out.println("hi.......aaalllaaannnn");
+    public boolean isLibriran(Integer readerId) {
+        User user = userRepo.getLibriranByReaderId(readerId);
+        return user != null;
     }
 
+    public boolean isSuperUser(Integer readerId) {
+        User user = userRepo.getSuperUserByReaderId(readerId);
+        return user != null;
+    }
 
     public static String getAccessToken(User user) {
         JwtBuilder builder = Jwts.builder().setId(Encoder.random())
@@ -69,7 +76,6 @@ public class UserService {
         String accessToken = Encoder.random();
         return accessToken;
     }
-
 
     private static Date getExpireDate() {
         return new Date(System.currentTimeMillis() + 30 * 3600 * 1000);

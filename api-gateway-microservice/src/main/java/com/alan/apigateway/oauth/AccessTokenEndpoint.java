@@ -1,7 +1,6 @@
 package com.alan.apigateway.oauth;
 
 import com.alan.reader.bean.User;
-import com.alan.reader.repo.UserRepo;
 import com.alan.reader.service.UserService;
 import com.alan.reader.util.Wrapper;
 import org.apache.oltu.oauth2.as.request.OAuthTokenRequest;
@@ -54,13 +53,11 @@ public class AccessTokenEndpoint extends HttpServlet {
                 case "password":
                     String username=oAuthTokenRequest.getUsername();
                     String password=oAuthTokenRequest.getPassword();
-                    System.out.println("uname:"+username+"  pwd:"+password);
-
                     if (OAuthUtils.isEmpty(username) || OAuthUtils.isEmpty(password)) {
                         printError(response, AuthorizeExceptions.ILLEGAL_USERNAME_LENGTH);
                         return;
                     }
-
+                    user = userService.findUserById(username);
                     if (user == null) {
                         printError(response, AuthorizeExceptions.NOT_FOUND_USER);
                         return;

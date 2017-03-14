@@ -34,8 +34,8 @@ public class UserRepo {
     public RowMapper<User> USER_MAPPER=new BeanPropertyRowMapper<>(User.class);
 
     public User create(final User user) {
-        final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt) " +
-                " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?)";
+        final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt,role) " +
+                " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?,0)";
         String school=user.getJoinSchool()!=null? MyDateUtils.date2String(user.getJoinSchool()):null;
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         template.update(connection -> {
@@ -62,7 +62,16 @@ public class UserRepo {
 
     public User getUserByStuId(String stuId) {
         try {
-            return template.queryForObject("SELECT * FROM user WHERE stuId = ? ",USER_MAPPER,stuId);
+            return template.queryForObject("SELECT * FROM user WHERE stuId = ? AND mask=0", USER_MAPPER, stuId);
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
+
+
+    public User getUserByReaderId(Integer readerId) {
+        try {
+            return template.queryForObject("SELECT * FROM user WHERE readerId = ? AND mask=0", USER_MAPPER, readerId);
         } catch (DataAccessException e) {
             return null;
         }
@@ -70,7 +79,7 @@ public class UserRepo {
 
     public User getUserByStuName(String stuName) {
         try {
-            return template.queryForObject("SELECT * FROM user WHERE stuName LIKE '%'+stuName+'%'",USER_MAPPER);
+            return template.queryForObject("SELECT * FROM user WHERE stuName LIKE '%'+stuName+'%' AND mask=0", USER_MAPPER);
         } catch (DataAccessException e) {
             return null;
         }
@@ -80,21 +89,42 @@ public class UserRepo {
     public List<User> findUserByPage(Integer page) {
         try {
             page = page == null ? 0 : page;
-            return template.query("SELECT * FROM user LIMIT ?,10", USER_MAPPER, page);
+            return template.query("SELECT * FROM user WHERE mask=0 LIMIT ?,10", USER_MAPPER, page);
         } catch (DataAccessException e) {
             return null;
         }
     }
 
 
-    public User updateUserByStuId(Long stuId){
-        template.update("UPDATE user SET ");
-        return null;
+    public List<User> findLibrirans() {
+        try {
+            return template.query("SELECT * FROM user WHERE role=1 AND mask=0 ", USER_MAPPER);
+        } catch (DataAccessException e) {
+            return null;
+        }
     }
 
-    public void delete(Long readerId){
+
+    public User getLibriranByReaderId(Integer readerId) {
         try {
-            template.update("UPDATE user SET mask=1 WHERE readerId=?", readerId);
+            return template.queryForObject("SELECT * FROM user WHERE readerId= ? AND role=1 AND mask=0 ", USER_MAPPER, readerId);
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
+
+    public User getSuperUserByReaderId(Integer readerId) {
+        try {
+            return template.queryForObject("SELECT * FROM user WHERE readerId= ? AND role=2 AND mask=0 ", USER_MAPPER, readerId);
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
+
+
+    public void delete(String stuId) {
+        try {
+            template.update("UPDATE user SET mask=1 WHERE stuId=? ", stuId);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -102,7 +132,7 @@ public class UserRepo {
 
     public void disable(Long readerId){
         try {
-            template.update("UPDATE user SET mask=2 WHERE readerId=?", readerId);
+            template.update("UPDATE user SET mask=2 WHERE readerId=? ", readerId);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }
@@ -110,7 +140,24 @@ public class UserRepo {
 
     public void enable(Long readerId){
         try {
-            template.update("UPDATE user SET mask=0 WHERE readerId=?", readerId);
+            template.update("UPDATE user SET mask=0 WHERE readerId=? ", readerId);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void setLibrarian(Integer readerId) {
+        try {
+            template.update("UPDATE user SET role=1 WHERE readerId=? ", readerId);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setSuperUser(Integer readerId) {
+        try {
+            template.update("UPDATE user SET role=2 WHERE readerId=? ", readerId);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

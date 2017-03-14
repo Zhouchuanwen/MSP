@@ -7,8 +7,6 @@ import java.util.UUID;
  */
 public class Encoder {
 
-
-
     private static final String ALPHABET="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final int MAX_RADIX=ALPHABET.length();
 
@@ -16,9 +14,6 @@ public class Encoder {
 
     public static String encode(long num){
         num=Math.abs(num);
-
-        System.out.println(MAX_RADIX);
-
         StringBuilder sb=new StringBuilder();
         while (num>0){
             sb.append(ALPHABET.charAt((int)(num%MAX_RADIX)));
@@ -27,7 +22,6 @@ public class Encoder {
         return sb.reverse().toString();
     }
 
-
     public static long decode(String str){
         long num=0;
         for (int i = 0; i < str.length(); i++)
@@ -35,12 +29,10 @@ public class Encoder {
         return num;
     }
 
-
     public static String random(){
         return encode(
                 UUID.randomUUID().getMostSignificantBits()
         );
     }
-
 
 }

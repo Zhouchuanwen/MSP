@@ -1,6 +1,9 @@
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import com.alan.reader.bean.User;
+import com.alan.reader.repo.UserRepo;
+import com.alan.reader.service.UserService;
 import org.junit.Test;
+
+import java.util.Date;
 
 /**
  * Created by alan on 17/3/10.
@@ -10,23 +13,11 @@ public class testB {
 
     @Test
     public void test() {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            String[] keyNotes_config = {"恭喜你购买成功", "巧克力", "39.8元", "2014年9月22日"};
-            JSONObject data = new JSONObject();
-            for (int i = 0; i < keyNotes_config.length; i++) {
-                JSONObject keynote = new JSONObject();
-                String key = "keynote" + (i + 1);
-                keynote.put("value", keyNotes_config[i]);
-                keynote.put("color", "#173177");
-                data.put(key, keynote);
-            }
-            jsonObject.put("data", data);
-            System.out.println(jsonObject.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        User user = User.builder().stuName("zcw").stuId("1305110090").email("chuanwen.zhou@baifendian.com").gender(1).password("123456").salt("alan").phone("15623912097")
+                .idCard("42092311111111").major("网络工程").joinSchool(new Date()).rank(4).sdept("数学与计算机").stuType("本科").build();
 
-
+        System.out.println(user.getStuName());
+        UserRepo userRepo = new UserRepo();
+        userRepo.create(user);
     }
 }
