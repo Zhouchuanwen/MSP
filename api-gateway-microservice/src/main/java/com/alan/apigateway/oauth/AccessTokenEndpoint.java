@@ -10,7 +10,9 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,15 @@ import java.io.IOException;
 @Component
 public class AccessTokenEndpoint extends HttpServlet {
 
-    private UserService userService = new UserService();
+//    public void init() throws ServletException {
+//                 super.init();
+//                 WebApplicationContextUtils
+//                         .getWebApplicationContext(getServletContext())
+//                         .getAutowireCapableBeanFactory().autowireBean(this);
+//    }
+
+    @Autowired
+    private UserService userService;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -55,8 +65,7 @@ public class AccessTokenEndpoint extends HttpServlet {
                         return;
                     }
                     System.out.println("username:" + username + "  pwd:" + password);
-                    System.out.println("userService: " + userService);
-                    userService.sayHello();
+                    user = userService.findUserById(username);
                     if (user == null) {
                         printError(response, AuthorizeExceptions.NOT_FOUND_USER);
                         return;
