@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+        <!--系统依赖-->
         <dependency>
             <groupId>com.book</groupId>
             <artifactId>reader-microservice</artifactId>
@@ -26,14 +27,17 @@
         </dependency>
         <dependency>
             <groupId>com.book</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>common-microservice</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!--zuul实现负载均衡-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
-        <!--Oauth2 token-->
+
+        <!--Oauth2-->
         <dependency>
             <groupId>org.apache.oltu.oauth2</groupId>
             <artifactId>org.apache.oltu.oauth2.authzserver</artifactId>
@@ -45,7 +49,6 @@
             <version>0.4</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>

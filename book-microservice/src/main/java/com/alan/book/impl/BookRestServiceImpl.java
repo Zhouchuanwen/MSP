@@ -5,12 +5,14 @@ import com.alan.book.service.BookRestService;
 import com.alan.book.repo.BookRepo;
 import com.alan.common.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by alan on 17/3/9.
  */
+@Service
 public class BookRestServiceImpl implements BookRestService {
 
     @Autowired
@@ -32,6 +34,11 @@ public class BookRestServiceImpl implements BookRestService {
 
     @Override
     public Wrapper up(Book req) {
+        return null;
+    }
+
+    @Override
+    public Wrapper update() {
         return null;
     }
 }

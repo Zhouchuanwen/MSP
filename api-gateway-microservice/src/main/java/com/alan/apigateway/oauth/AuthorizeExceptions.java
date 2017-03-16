@@ -1,8 +1,8 @@
 package com.alan.apigateway.oauth;
 
 
-import com.alan.reader.util.Wrapper;
-import com.alan.reader.util.WrapperProvider;
+import com.alan.common.util.Wrapper;
+import com.alan.common.util.WrapperProvider;
 
 /**
  * 授权管理异常 200 段

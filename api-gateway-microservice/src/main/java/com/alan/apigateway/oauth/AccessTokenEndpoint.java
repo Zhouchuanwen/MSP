@@ -1,8 +1,8 @@
 package com.alan.apigateway.oauth;
 
+import com.alan.common.util.Wrapper;
 import com.alan.reader.bean.User;
 import com.alan.reader.service.UserService;
-import com.alan.reader.util.Wrapper;
 import org.apache.oltu.oauth2.as.request.OAuthTokenRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
 import org.apache.oltu.oauth2.common.OAuth;
@@ -10,7 +10,6 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -26,12 +25,10 @@ import java.io.IOException;
 @Component
 public class AccessTokenEndpoint extends HttpServlet {
 
-    @Autowired
-    private UserService userService;
+    private UserService userService = new UserService();
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
             HttpServletRequest req = new OAuthAccessTokenWrapper(request);
             OAuthTokenRequest oAuthTokenRequest = new OAuthExtendTokenRequest(req);
 
@@ -57,7 +54,9 @@ public class AccessTokenEndpoint extends HttpServlet {
                         printError(response, AuthorizeExceptions.ILLEGAL_USERNAME_LENGTH);
                         return;
                     }
-                    user = userService.findUserById(username);
+                    System.out.println("username:" + username + "  pwd:" + password);
+                    System.out.println("userService: " + userService);
+                    userService.sayHello();
                     if (user == null) {
                         printError(response, AuthorizeExceptions.NOT_FOUND_USER);
                         return;

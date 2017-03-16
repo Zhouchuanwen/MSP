@@ -1,5 +1,4 @@
-#注意配置主键不能重复
-#配置多数据源:mysql,mongodb
+#配置多数据源:mongodb
 spring:
   data:
     mongodb:

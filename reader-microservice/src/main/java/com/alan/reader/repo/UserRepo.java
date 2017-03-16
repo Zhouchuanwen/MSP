@@ -3,13 +3,11 @@ package com.alan.reader.repo;
 import com.alan.common.util.MyDateUtils;
 import com.alan.reader.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -20,13 +18,7 @@ import java.util.List;
  * Created by alan on 17/1/3.
  */
 @Repository
-@Component
 public class UserRepo {
-
-    @Bean
-    public UserRepo getUserRepo() {
-        return new UserRepo();
-    }
 
     @Autowired
     public JdbcTemplate template;
@@ -62,6 +54,7 @@ public class UserRepo {
 
     public User getUserByStuId(String stuId) {
         try {
+            System.out.println("stuId=====>" + stuId);
             return template.queryForObject("SELECT * FROM user WHERE stuId = ? AND mask=0", USER_MAPPER, stuId);
         } catch (DataAccessException e) {
             return null;

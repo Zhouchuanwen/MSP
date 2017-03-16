@@ -11,6 +11,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -79,6 +80,11 @@ public class UserService {
 
     private static Date getExpireDate() {
         return new Date(System.currentTimeMillis() + 30 * 3600 * 1000);
+    }
+
+
+    public void sayHello() {
+        System.out.println("hello.......!!!!!!!!");
     }
 
 }

@@ -60,7 +60,7 @@ public class User{
 
     private String email;
 
-    private int rank;
+    private Integer rank;
 
     /**
      * 用户角色 0:普通用户 1:图书管理员 2:系统管理员

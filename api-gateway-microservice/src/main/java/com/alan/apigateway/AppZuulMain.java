@@ -1,6 +1,7 @@
 package com.alan.apigateway;
 
 import com.alan.apigateway.oauth.AccessTokenEndpoint;
+import com.alan.reader.service.UserService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.alan.reader.service"})
+@ComponentScan(basePackages = {"com.alan.reader", "com.alan.common"})
 public class AppZuulMain {
 
     public static void main(String[] args){

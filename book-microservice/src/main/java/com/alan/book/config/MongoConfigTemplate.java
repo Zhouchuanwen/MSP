@@ -24,8 +24,6 @@ public class MongoConfigTemplate {
 
     public Datastore get() throws UnknownHostException {
         Morphia morphia = new Morphia();
-//        MongoCredential mongoCredential=MongoCredential.createMongoCRCredential(mongoProperties.getUsername(),mongoProperties.getDatabase(),mongoProperties.getPassword());
-//        Mongo mg=new MongoClient(new ServerAddress(mongoProperties.getHost(),mongoProperties.getPort()), Arrays.asList(mongoCredential));
         return morphia.createDatastore((MongoClient) mongo, mongoProperties.getDatabase());
     }
 

@@ -9,7 +9,6 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by alan on 16/12/26.
  */
-
 @Path("/user")
 public interface ReaderRestServcie {
 

@@ -1,3 +1,4 @@
+import com.alan.reader.service.UserService;
 import org.codehaus.jettison.json.JSONException;
 import org.junit.Test;
 
@@ -10,9 +11,8 @@ public class test1 {
 
     @Test
     public void test() throws JSONException {
-
-
-        System.out.println(new Date().getTime());
     }
+
+
 
 }

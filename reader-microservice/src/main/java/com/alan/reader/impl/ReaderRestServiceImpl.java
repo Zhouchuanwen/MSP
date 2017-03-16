@@ -5,6 +5,7 @@ import com.alan.reader.bean.User;
 import com.alan.reader.model.UserReq;
 import com.alan.reader.repo.UserRepo;
 import com.alan.reader.service.ReaderRestServcie;
+import com.alan.reader.service.UserService;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class ReaderRestServiceImpl implements ReaderRestServcie {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private UserService userService;
 
     @Override
     public Wrapper test() {
@@ -39,8 +42,7 @@ public class ReaderRestServiceImpl implements ReaderRestServcie {
                 .phone(userReq.getPhone()).password(userReq.getPassword()).salt(userReq.getSalt())
                 .gender(userReq.getGender()).email(userReq.getEmail()).rank(userReq.getRank())
                 .major(userReq.getMajor()).register(new Date()).build();
-        user.secure();
-        if (userRepo.create(user) != null) {
+        if (userService.create(user) != null) {
             return Wrapper.builder().code(0).msg("SUCCESS").data(user).build();
         }
         return Wrapper.ERROR;
