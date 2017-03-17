@@ -12,7 +12,7 @@ import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,12 +27,6 @@ import java.io.IOException;
 @Component
 public class AccessTokenEndpoint extends HttpServlet {
 
-//    public void init() throws ServletException {
-//                 super.init();
-//                 WebApplicationContextUtils
-//                         .getWebApplicationContext(getServletContext())
-//                         .getAutowireCapableBeanFactory().autowireBean(this);
-//    }
 
     @Autowired
     private UserService userService;
