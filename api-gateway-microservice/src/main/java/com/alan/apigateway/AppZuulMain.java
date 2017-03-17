@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.alan"})
+@ComponentScan(basePackages = {"com.alan.reader"})
 public class AppZuulMain {
 
     @Autowired
