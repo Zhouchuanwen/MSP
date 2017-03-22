@@ -168,7 +168,6 @@
             <url>http://repo.spring.io/libs-snapshot-local</url>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -177,7 +176,6 @@
             <url>http://repo.spring.io/libs-snapshot-continuous-local</url>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -186,7 +184,6 @@
             <url>http://repo.spring.io/libs-milestone-local</url>
             <snapshots>
                 <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -195,7 +192,6 @@
             <url>http://repo.spring.io/libs-release-local</url>
             <snapshots>
                 <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
     </repositories>
@@ -206,7 +202,6 @@
             <url>http://repo.spring.io/libs-snapshot-local</url>
             <snapshots>
                 <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </pluginRepository>
         <pluginRepository>
@@ -215,7 +210,6 @@
             <url>http://repo.spring.io/libs-milestone-local</url>
             <snapshots>
                 <enabled>false</enabled>
-                <updatePolicy>always</updatePolicy>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
