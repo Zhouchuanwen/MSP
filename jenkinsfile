@@ -30,18 +30,6 @@ node{
         }
     }
 
-
-    stage('deploy'){
-        def filename=''
-        def where=''
-
-        dir(sourceDir){
-            sh  "./upload.sh ${filename} ${where}"
-            sh './start.sh'
-        }
-
-    }
-
 }
 
 
