@@ -39,6 +39,55 @@
 
 
 
+
+
+
+**持续集成和DevOps:**
+
+    jenkins+docker
+
+    `pipeline{
+        agent any
+        tools{
+            maven 'Maven 3.3.9'
+            jdk 'jdk8'
+        }
+        stages{
+            stag('init'){
+                steps{
+                    sh '''
+                        echo "PATH=${PATH}"
+                        echo "M2_HOME=${M2_HOME}"
+                    '''
+                }
+            }
+            stage('build'){
+                steps{
+                    sh 'mvn install'
+                }
+            }
+        }
+    }`
+
+
+    实践步骤
+
+
+    1.checkout
+
+        git不同分支的切换处理
+
+    2.build
+
+        依赖的环境引入，打成jar包
+
+    3.部署
+
+        scp到远程服务器，进行kill端口并替换jar，重新启动服务
+
+
+
+
 **项目难点:**
 
     1.docker容器部署后的项目之间依赖和通信问题

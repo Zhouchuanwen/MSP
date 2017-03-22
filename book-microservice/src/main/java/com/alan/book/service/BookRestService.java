@@ -1,7 +1,7 @@
 package com.alan.book.service;
 
 
-import com.alan.book.bean.Book;
+import com.alan.book.model.BookReq;
 import com.alan.common.util.Wrapper;
 
 import javax.ws.rs.*;
@@ -19,24 +19,56 @@ public interface BookRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     Wrapper test();
 
+
     @GET
     @Path("/testMongo")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     Wrapper testMongo();
 
+
     @PUT
     @Path("/up")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Wrapper up(Book req);
+    Wrapper up(BookReq bookReq);
 
 
     @DELETE
+    @Path("/delete/{isbn}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    Wrapper down(@PathParam("isbn") String isbn);
+
+
+    @PUT
     @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    Wrapper update();
+    Wrapper update(BookReq bookReq);
 
+
+    @GET
+    @Path("/query")
+    @Produces(MediaType.APPLICATION_JSON)
+    Wrapper selectByName(@QueryParam("name") String bookName);
+
+
+    @GET
+    @Path("/query")
+    @Produces(MediaType.APPLICATION_JSON)
+    Wrapper selectByISBN(@QueryParam("isbn") String ISBN);
+
+
+    @GET
+    @Path("/query")
+    @Produces(MediaType.APPLICATION_JSON)
+    Wrapper selectByTag(@QueryParam("tag") String tag);
+
+
+    @GET
+    @Path("/query")
+    @Produces(MediaType.APPLICATION_JSON)
+    Wrapper selectByAuthor(@QueryParam("author") String author);
 
 }

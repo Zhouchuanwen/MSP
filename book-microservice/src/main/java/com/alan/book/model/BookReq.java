@@ -31,6 +31,6 @@ public class BookReq {
 
     private double score;
 
-    private Tag tag;
+    private String tag;
 
 }

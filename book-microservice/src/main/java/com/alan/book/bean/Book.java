@@ -32,12 +32,7 @@ public class Book {
 
     private String libraryAddress;
 
-    private int num;
-
-    //书籍评分
-    private double score;
-
     //书籍类型
-    private Tag tag;
+    private String tag;
 
 }

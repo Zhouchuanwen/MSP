@@ -1,0 +1,48 @@
+#!groovy
+
+node{
+    def credentialsId='cred'
+    def sourceDir='src'
+
+    stage('checkout the source'){
+        checkout scm
+    }
+
+    stage('build'){
+        dir(sourceDir){
+            withEnv(["PATH+MAVEN=${tool 'Maven 3.3.9'}/bin"]){
+                sh 'mvn clean package'
+            }
+        }
+    }
+
+    stage('Test'){
+        step{
+            sh 'make check'
+        }
+        post{
+            always{
+                junit '**/target/*.xml'
+            }
+            failure{
+                mail to: chuanwen.zhou@baifendian.com
+            }
+        }
+    }
+
+
+    stage('deploy'){
+        def filename=''
+        def where=''
+
+        dir(sourceDir){
+            sh  "./upload.sh ${filename} ${where}"
+            sh './start.sh'
+        }
+
+    }
+
+}
+
+
+

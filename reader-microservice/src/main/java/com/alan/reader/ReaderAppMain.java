@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * Created by alan on 16/12/26.
  */
-//@SpringBootApplication
-//@EnableDiscoveryClient
+@SpringBootApplication
+@EnableDiscoveryClient
 public class ReaderAppMain{
 
     public static void main(String[] args){
