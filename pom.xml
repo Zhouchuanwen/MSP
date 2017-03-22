@@ -168,6 +168,7 @@
             <url>http://repo.spring.io/libs-snapshot-local</url>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -176,6 +177,7 @@
             <url>http://repo.spring.io/libs-snapshot-continuous-local</url>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
         </repository>
         <repository>
@@ -202,6 +204,7 @@
             <url>http://repo.spring.io/libs-snapshot-local</url>
             <snapshots>
                 <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
         </pluginRepository>
         <pluginRepository>
