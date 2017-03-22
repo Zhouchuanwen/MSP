@@ -28,7 +28,14 @@ public class UserRepo {
     public User create(final User user) {
         final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt,role) " +
                 " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?,0)";
-        String school=user.getJoinSchool()!=null? MyDateUtils.date2String(user.getJoinSchool()):null;
+
+        String school;
+        if (user.getJoinSchool() != null) {
+            school = MyDateUtils.date2String(user.getJoinSchool());
+        } else {
+            school = null;
+        }
+
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         template.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});
@@ -54,7 +61,6 @@ public class UserRepo {
 
     public User getUserByStuId(String stuId) {
         try {
-            System.out.println("stuId=====>" + stuId);
             return template.queryForObject("SELECT * FROM user WHERE stuId = ? AND mask=0", USER_MAPPER, stuId);
         } catch (DataAccessException e) {
             return null;
@@ -157,7 +163,4 @@ public class UserRepo {
     }
 
 
-    public void hi(){
-        System.out.println("aaa..................> hi");
-    }
 }
