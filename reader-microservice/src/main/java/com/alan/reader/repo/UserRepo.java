@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -29,31 +32,30 @@ public class UserRepo {
         final String SQL = "INSERT INTO user(stuName,idCard,gender,joinSchool,sdept,stuType,major,phone,email,mask,stuId,register,password,salt,role) " +
                 " VALUES(?,?,?,?,?,?,?,?,?,0,?,?,?,?,0)";
 
-        String school;
-        if (user.getJoinSchool() != null) {
-            school = MyDateUtils.date2String(user.getJoinSchool());
-        } else {
-            school = null;
-        }
 
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
-        template.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});
-            ps.setString(1,user.getStuName());
-            ps.setString(2,user.getIdCard());
-            ps.setInt(3,user.getGender());
-            ps.setString(4,school);
-            ps.setString(5,user.getSdept());
-            ps.setString(6,user.getStuType());
-            ps.setString(7,user.getMajor());
-            ps.setString(8,user.getPhone());
-            ps.setString(9,user.getEmail());
+        template.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                String school = user.getJoinSchool() != null ? MyDateUtils.date2String(user.getJoinSchool()) : null;
 
-            ps.setString(10,user.getStuId());
-            ps.setString(11,MyDateUtils.time2String(new Date()));
-            ps.setString(12,user.getPassword());
-            ps.setString(13,user.getSalt());
-            return ps;
+                PreparedStatement ps = connection.prepareStatement(SQL, new String[]{"id"});
+                ps.setString(1, user.getStuName());
+                ps.setString(2, user.getIdCard());
+                ps.setInt(3, user.getGender());
+                ps.setString(4, school);
+                ps.setString(5, user.getSdept());
+                ps.setString(6, user.getStuType());
+                ps.setString(7, user.getMajor());
+                ps.setString(8, user.getPhone());
+                ps.setString(9, user.getEmail());
+
+                ps.setString(10, user.getStuId());
+                ps.setString(11, MyDateUtils.time2String(new Date()));
+                ps.setString(12, user.getPassword());
+                ps.setString(13, user.getSalt());
+                return ps;
+            }
         }, holder);
         return user;
     }
