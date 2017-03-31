@@ -28,7 +28,7 @@ public interface ReaderRestServcie {
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    Wrapper delete(UserReq userReq);
+    Wrapper delete(String id);
 
 
     @PUT

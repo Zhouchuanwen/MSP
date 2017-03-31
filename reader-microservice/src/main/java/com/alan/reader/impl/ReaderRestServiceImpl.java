@@ -49,11 +49,11 @@ public class ReaderRestServiceImpl implements ReaderRestServcie {
     }
 
     @Override
-    public Wrapper delete(UserReq userReq) {
-        if (userRepo.getUserByStuId(userReq.getStuId()) == null) {
+    public Wrapper delete(String id) {
+        if (userRepo.getUserByStuId(id) == null) {
             return Wrapper.builder().code(-1).msg("删除失败，用户不存在!").build();
         }
-        userRepo.delete(userReq.getStuId());
+        userRepo.delete(id);
         return Wrapper.SUCCESS;
     }
 

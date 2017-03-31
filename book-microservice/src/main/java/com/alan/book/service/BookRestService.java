@@ -71,4 +71,9 @@ public interface BookRestService {
     @Produces(MediaType.APPLICATION_JSON)
     Wrapper selectByAuthor(@QueryParam("author") String author);
 
+
+    @GET
+    @Path("/query")
+    @Produces(MediaType.APPLICATION_JSON)
+    Wrapper selectBookByKey(@QueryParam("key") String key);
 }

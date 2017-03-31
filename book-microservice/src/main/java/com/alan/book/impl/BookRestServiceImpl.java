@@ -98,4 +98,16 @@ public class BookRestServiceImpl implements BookRestService {
         List<Book> books = bookRepo.selectByAuthor(author);
         return books == null ? Wrapper.builder().code(0).msg("SUCCESS").data(books).build() : Wrapper.ERROR;
     }
+
+
+    /**
+     * 按照 mongodb regx 检索,对关键字段检索
+     *
+     * @param key
+     * @return
+     */
+    @Override
+    public Wrapper selectBookByKey(String key) {
+        return null;
+    }
 }
