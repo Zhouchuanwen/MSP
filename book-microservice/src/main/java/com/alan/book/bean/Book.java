@@ -32,7 +32,20 @@ public class Book {
 
     private String libraryAddress;
 
-    //书籍类型
+    /**
+     * 书籍类型
+     */
     private String tag;
+
+
+    /**
+     * 剩余数量
+     */
+    private int num;
+
+    /**
+     * 图片地址
+     */
+    private String url;
 
 }

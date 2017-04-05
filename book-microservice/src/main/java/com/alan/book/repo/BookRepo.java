@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -101,6 +103,22 @@ public class BookRepo {
         } catch (DataAccessException e) {
             return false;
         }
+    }
+
+
+    public List<Book> selectBookByKey(String key) {
+        List<Book> books = new ArrayList<>();
+        try {
+            Criteria criteria = new Criteria();
+            criteria.orOperator(
+                    Criteria.where("bookName").regex(".*?" + key + ".*"), Criteria.where("author").regex(".*?" + key + ".*")
+                    , Criteria.where("libraryAddress").regex(".*?" + key + ".*"), Criteria.where("tag").regex(".*?" + key + ".*")
+                    , Criteria.where("isbn").is(key)
+            );
+            books = mongoTemplate.find(new Query(criteria), Book.class);
+        } catch (DataAccessException e) {
+        }
+        return books;
     }
 
 }

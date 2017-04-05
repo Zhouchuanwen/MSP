@@ -74,40 +74,25 @@ public class BookRestServiceImpl implements BookRestService {
         return Wrapper.ERROR;
     }
 
-
-    @Override
-    public Wrapper selectByName(String bookName) {
-        List<Book> books = bookRepo.selectByName(bookName);
-        return books == null ? Wrapper.builder().code(0).msg("SUCCESS").data(books).build() : Wrapper.ERROR;
-    }
-
     @Override
     public Wrapper selectByISBN(String ISBN) {
         Book book = bookRepo.selectByISBN(ISBN);
-        return book == null ? Wrapper.builder().code(0).msg("SUCCESS").data(book).build() : Wrapper.ERROR;
+        return book != null ? Wrapper.builder().code(0).msg("SUCCESS").data(book).build() : Wrapper.ERROR;
     }
 
-    @Override
-    public Wrapper selectByTag(String tag) {
-        List<Book> books = bookRepo.selectByTag(tag);
-        return books == null ? Wrapper.builder().code(0).msg("SUCCESS").data(books).build() : Wrapper.ERROR;
-    }
 
-    @Override
-    public Wrapper selectByAuthor(String author) {
-        List<Book> books = bookRepo.selectByAuthor(author);
-        return books == null ? Wrapper.builder().code(0).msg("SUCCESS").data(books).build() : Wrapper.ERROR;
-    }
 
 
     /**
      * 按照 mongodb regx 检索,对关键字段检索
-     *
      * @param key
      * @return
      */
     @Override
     public Wrapper selectBookByKey(String key) {
-        return null;
+        if (Strings.isNullOrEmpty(key)) {
+            return Wrapper.ERROR;
+        }
+        return Wrapper.builder().code(0).msg("SUCCESS").data(bookRepo.selectBookByKey(key)).build();
     }
 }

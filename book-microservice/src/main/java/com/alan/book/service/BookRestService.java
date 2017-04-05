@@ -49,31 +49,14 @@ public interface BookRestService {
 
 
     @GET
-    @Path("/querybooks")
-    @Produces(MediaType.APPLICATION_JSON)
-    Wrapper selectByName(@QueryParam("name") String bookName);
-
-
-    @GET
     @Path("/queryisbn")
     @Produces(MediaType.APPLICATION_JSON)
     Wrapper selectByISBN(@QueryParam("isbn") String ISBN);
 
 
     @GET
-    @Path("/querytag")
-    @Produces(MediaType.APPLICATION_JSON)
-    Wrapper selectByTag(@QueryParam("tag") String tag);
-
-
-    @GET
-    @Path("/queryauthor")
-    @Produces(MediaType.APPLICATION_JSON)
-    Wrapper selectByAuthor(@QueryParam("author") String author);
-
-
-    @GET
     @Path("/query")
     @Produces(MediaType.APPLICATION_JSON)
     Wrapper selectBookByKey(@QueryParam("key") String key);
+
 }
