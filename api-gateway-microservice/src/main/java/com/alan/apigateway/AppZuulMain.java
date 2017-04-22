@@ -1,7 +1,6 @@
 package com.alan.apigateway;
 
 import com.alan.apigateway.oauth.AccessTokenEndpoint;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
@@ -19,15 +18,12 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"com.alan.reader"})
 public class AppZuulMain {
 
-    @Autowired
-    private AccessTokenEndpoint accessTokenEndpoint;
-
     public static void main(String[] args){
         SpringApplication.run(AppZuulMain.class, args);
     }
 
     @Bean
     public ServletRegistrationBean AuthorizeServlet(){
-        return new ServletRegistrationBean(accessTokenEndpoint, "/oauth_token/*");
+        return new ServletRegistrationBean(new AccessTokenEndpoint(), "/oauth_token/*");
     }
 }
